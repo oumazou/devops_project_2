@@ -39,12 +39,12 @@ public class ProduitServiceImplMock {
 	ProduitServiceImpl produitService;
 	
 	Date date = new Date();
-	Produit p = new Produit((long) 1, "ABC","AAA",200, date,date,null,null,null);
+	Produit p = new Produit(1, "ABC","AAA",200, date,date,null,null,null);
 	
 	List<Produit> lcp = new ArrayList<Produit>() {
 		{
-		add(new Produit((long) 2, "AB","CCC",300, date,date,null,null,null));
-		add(new Produit((long) 3, "ABCD","DDD",400, date,date,null,null,null));
+		add(new Produit(2, "AB","CCC",300, date,date,null,null,null));
+		add(new Produit(3, "ABCD","DDD",400, date,date,null,null,null));
 		}
 	};
 
@@ -70,8 +70,8 @@ public class ProduitServiceImplMock {
 	
 	@Test
 	void testDeleteProduit()  {
-		produitService.deleteProduit((long) 1);;
-		Mockito.verify(produitRepository, times(1)).deleteById((long) 1);
+		produitService.deleteProduit(1);;
+		Mockito.verify(produitRepository, times(1)).deleteById(1);
 	}
 
 	@Test
