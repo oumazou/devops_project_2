@@ -15,9 +15,8 @@ import com.esprit.examen.entities.CategorieClient;
 import com.esprit.examen.entities.Client;
 import com.esprit.examen.entities.Profession;
 import lombok.extern.slf4j.Slf4j;
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
-@Slf4j
 public class ClientServiceImplTest {
 	@Autowired
 	IClientService clientService;
