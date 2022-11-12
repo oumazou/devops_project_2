@@ -1,4 +1,4 @@
-package tn.esprit.rh.achat.services.produit;
+package com.esprit.examen.services.produit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.any;
@@ -22,12 +22,12 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import tn.esprit.rh.achat.entities.Produit;
-import tn.esprit.rh.achat.entities.Reglement;
-import tn.esprit.rh.achat.repositories.ProduitRepository;
-import tn.esprit.rh.achat.repositories.ReglementRepository;
-import tn.esprit.rh.achat.services.ProduitServiceImpl;
-import tn.esprit.rh.achat.services.ReglementServiceImpl;
+import com.esprit.examen.entities.Produit;
+import com.esprit.examen.entities.Reglement;
+import com.esprit.examen.repositories.ProduitRepository;
+import com.esprit.examen.repositories.ReglementRepository;
+import com.esprit.examen.services.ProduitServiceImpl;
+import com.esprit.examen.services.ReglementServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class ProduitServiceImplMock {
