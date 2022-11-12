@@ -38,13 +38,19 @@ pipeline {
         
         stage('Deployment nexus') {
             steps {
-                sh 'mvn deploy -Dmaven.test.skip=true'
+                sh 'mvn deploy -Dmaven.test.skip=true -Djib.skipExistingImages'
             }
         }
 
         stage("docker compose") {
             steps {
                 sh "sudo docker compose up -d";
+            }
+        }
+
+        stage("docker compose") {
+            steps {
+                sh "sudo docker down";
             }
         }   
     }
