@@ -1,20 +1,24 @@
 
 package com.esprit.examen.services;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+
 import com.esprit.examen.entities.CategorieClient;
 import com.esprit.examen.entities.Client;
 import com.esprit.examen.entities.Profession;
-import lombok.extern.slf4j.Slf4j;
+
 
 @SpringBootTest
 public class ClientServiceImplTest {
