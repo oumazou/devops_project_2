@@ -11,16 +11,10 @@ pipeline {
                     url: "https://github.com/oumazou/devops_project_2.git";
             }
         }
-       
-        stage("Build") {
-            steps {
-                sh "mvn clean package";
-            }
-        }
 
-        stage('test'){
+        stage('Test Dynamique Junit and  Mock'){
             steps {
-                sh "mvn test -e"
+                sh "mvn clean test -Ptest";
             }
         }
 
@@ -29,16 +23,10 @@ pipeline {
                 sh 'mvn sonar:sonar -Dsonar.login="admin" -Dsonar.password="vagrant"'
             }
         }
-        
-        stage("docker compose") {
-            steps {
-                sh "sudo docker compose up -d";
-            }
-        }
 
-        stage('Deployment nexus') {
+        stage("Build packacge") {
             steps {
-                sh 'mvn deploy -Dmaven.test.skip=true'
+                sh "mvn clean package -Pprod";
             }
         }
 
@@ -47,8 +35,18 @@ pipeline {
                 sh "sudo docker build -t tpachat .";
             }
         }
-
         
+        stage('Deployment nexus') {
+            steps {
+                sh 'mvn deploy -Dmaven.test.skip=true'
+            }
+        }
+
+        stage("docker compose") {
+            steps {
+                sh "sudo docker compose up -d";
+            }
+        }   
     }
     post {
         always {
