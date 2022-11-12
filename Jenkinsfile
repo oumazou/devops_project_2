@@ -14,7 +14,7 @@ pipeline {
 
         stage('Test Dynamique Junit and  Mock'){
             steps {
-                sh "mvn clean test -Ptest";
+                sh "mvn clean test -Dtest";
             }
         }
 
@@ -26,7 +26,7 @@ pipeline {
 
         stage("Build packacge") {
             steps {
-                sh "mvn clean package -Pprod";
+                sh "mvn clean package -Dprod";
             }
         }
 
