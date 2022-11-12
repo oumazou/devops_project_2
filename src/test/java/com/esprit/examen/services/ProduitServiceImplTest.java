@@ -23,7 +23,7 @@ public class ProduitServiceImplTest {
 		List<Produit> produits = produitService.retrieveAllProduits();
 		int expected = produits.size();
 		Produit p = new Produit();
-		p.setIdProduit(1);
+		p.setIdProduit((long)1);
 		p.setCodeProduit("AAA");
 		p.setLibelleProduit("C");
 		p.setPrix(120);
