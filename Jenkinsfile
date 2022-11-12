@@ -20,7 +20,7 @@ pipeline {
 
         stage("Sonar") {
             steps {
-                sh 'mvn sonar:sonar -Dsonar.login="admin" -Dsonar.password="vagrant"'
+                sh 'mvn sonar:sonar -Dsonar.login="admin" -Dsonar.password="vagrant -Ptest"'
             }
         }
 
@@ -38,7 +38,7 @@ pipeline {
         
         stage('Deployment nexus') {
             steps {
-                sh 'mvn deploy -Dmaven.test.skip=true -Djib.skipExistingImages'
+                sh 'mvn deploy -Dmaven.test.skip=true -Djib.skipExistingImages=true -Pprod'
             }
         }
 
