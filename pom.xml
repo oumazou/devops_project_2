@@ -86,7 +86,9 @@
 </profile>
 </profiles>
 
-<resources>
+
+	<build>
+		<resources>
 	<resource>
 	<directory>src/main/resources</directory>
 		<excludes>
@@ -99,9 +101,6 @@
 		<directory>${env}</directory>
 	</resource>
 </resources>
-
-	<build>
-		
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
