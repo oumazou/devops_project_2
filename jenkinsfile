@@ -23,7 +23,7 @@ pipeline {
                 sh "mvn test -e"
             }
         }
-        
+
         stage("Sonar") {
             steps {
                 sh 'mvn sonar:sonar -Dsonar.login="admin" -Dsonar.password="vagrant"'
@@ -55,6 +55,8 @@ pipeline {
             cleanWs()
         }
     }
-    
+
+
+
 
 }
