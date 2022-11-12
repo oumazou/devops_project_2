@@ -1,10 +1,12 @@
 pipeline {
 
     agent { label 'validation' }
-
+    environment{ 
+        DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+    }
 
     stages {
-        stage ('GIT') {
+        stage ('Git checkout branch') {
             steps {
             echo "Getting Project from Git"; 
                 git branch: "farjallah", 
@@ -12,37 +14,44 @@ pipeline {
             }
         }
 
-        stage('Test Dynamique Junit and  Mock'){
+        stage('Unit Testing : Test Dynamique Junit and  Mockito'){
             steps {
                 sh "mvn clean test -Ptest";
             }
         }
 
-        stage("Sonar") {
+        stage("SRC Analysis : Test Statique Sonar") {
             steps {
                 sh 'mvn sonar:sonar -Dsonar.login="admin" -Dsonar.password="vagrant" -Ptest'
             }
         }
 
-        stage("Build packacge") {
+        stage("Build Artifact") {
             steps {
                 sh "mvn clean package -Pprod";
             }
         }
 
-        stage("Build artifact") {
+        stage("Build Docker image") {
             steps {
-                sh "sudo docker build -t tpachat .";
+                sh "sudo docker build -t farjo/tpachat .";
             }
         }
         
-        stage('Deployment nexus') {
+        stage('Deploy Artifact to Nexus') {
             steps {
-                sh 'mvn deploy -Dmaven.test.skip=true -Djib.skipExistingImages=true -Pprod'
+                sh 'mvn deploy -Dmaven.test.skip=true -Pprod'
             }
         }
 
-        stage("docker compose up ") {
+        stage('Deploy Image to DockerHub') {
+            steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin';
+                sh 'docker push farjo/tpachat';
+            }
+        }
+
+        stage("Start Containers : with docker compose") {
             steps {
                 sh "sudo docker compose up -d";
             }
