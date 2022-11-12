@@ -4,8 +4,8 @@ package com.esprit.examen.services;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import services.entities.Produit;
-import services.services.IProduitService;
+import com.esprit.examen.entities.Produit;
+import com.esprit.examen.services.IProduitService;
 
 import java.util.List;
 

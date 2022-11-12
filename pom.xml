@@ -64,7 +64,7 @@
 <profile>
 <id>dev</id>
 <properties>
-<env>src/main/resources/test</env>
+<env>src/main/resources/dev</env>
 <maven.test.skip>true</maven.test.skip>
 </properties>
 <activation>
