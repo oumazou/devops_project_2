@@ -32,9 +32,15 @@ pipeline {
             }
         }
 
-        stage("Build Docker image") {
+//        stage("Build Docker image") {
+//            steps {
+//                sh "sudo docker build -t farjo/tpachat .";
+//            }
+//        }
+
+        stage("Build Docker image from nexus repo") {
             steps {
-                sh "sudo docker build -t farjo/tpachat .";
+                sh "sudo docker pull 192.168.1.50:8082/docker-hosted-validation/validation";
             }
         }
         
@@ -44,12 +50,12 @@ pipeline {
             }
         }
 
-        stage('Deploy Image to DockerHub') {
-            steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin';
-                sh 'sudo docker push farjo/tpachat';
-            }
-        }
+        //stage('Deploy Image to DockerHub') {
+          //  steps {
+			//	sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin';
+              //  sh 'sudo docker push farjo/tpachat';
+            //}
+        //}
 
         stage("Start Containers : with docker compose") {
             steps {
@@ -57,11 +63,11 @@ pipeline {
             }
         }
 
-        stage("docker compose down") {
-            steps {
-                sh "sudo docker compose down";
-            }
-        }   
+        //stage("docker compose down") {
+            //steps {
+            //    sh "sudo docker compose down";
+          //  }
+        //}   
     }
     post {
         always {
