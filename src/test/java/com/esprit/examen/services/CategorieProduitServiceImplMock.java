@@ -40,6 +40,7 @@ class CategorieProduitServiceImplMock {
 		{
 		add(new CategorieProduit((long) 2, "abcd","cat2", null));
 		add(new CategorieProduit((long) 3, "abcdf","cat3", null));
+		add(new CategorieProduit((long) 4, "abcdf","cat3", null));
 		}
 	};
 
