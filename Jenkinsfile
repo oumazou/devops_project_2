@@ -59,7 +59,7 @@ pipeline {
 
         stage("docker compose down") {
             steps {
-                sh "sudo docker down";
+                sh "sudo docker compose down";
             }
         }   
     }
