@@ -32,20 +32,11 @@ pipeline {
             }
         }
 
-        stage("Build Docker image") {
-            steps {
-                sh "sudo docker build -t farjo/tpachat .";
-            }
-        }
-
-        stage("push image to nexus private repo") {
-            steps {
-                sh "sudo docker login -u admin -p nexus 192.168.1.50:8082/repository/docker-hosted-validation/";
-                sh "sudo docker tag farjo/tpachat 192.168.1.50:8082/docker-hosted-validation/validation";
-                sh "sudo docker push 192.168.1.50:8082/docker-hosted-validation/validation";
-            }
-        }
-
+        //stage("Build Docker image") {
+          //  steps {
+            //    sh "sudo docker build -t farjo/tpachat .";
+            //}
+        //}
 
         stage("Build Docker image from nexus repo") {
             steps {
@@ -72,11 +63,11 @@ pipeline {
             }
         }
 
-        //stage("docker compose down") {
-            //steps {
-            //    sh "sudo docker compose down";
-          //  }
-        //}   
+        stage("docker compose down") {
+            steps {
+                sh "sudo docker compose down";
+            }
+        }   
     }
     post {
         always {
